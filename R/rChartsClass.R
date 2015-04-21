@@ -152,11 +152,12 @@ rCharts = setRefClass('rCharts', list(params = 'list', lib = 'character',
         }
         cdn = !(chunk_opts_$rcharts %?=% 'draft')
         .self$save(file_, cdn = cdn)
-         cat(c(
-           "<iframe src='", file_, 		           "<iframe src='", file_, 
-         "' scrolling='no' frameBorder='0' seamless", paste("class='rChart", lib, "'"),		+          "' scrolling='no' frameBorder='0' seamless ", paste("class='rChart", lib, "'"),          "id=iframe-", params$dom, "></iframe>",		+          " id='iframe-", params$dom, "' height=", params$height + 50,
-         "<style>iframe.rChart{ width: 100%; height: 400px;}</style>"		+          " width=", params$width + 50 ,"></iframe>"
-        ))		+        ),sep="")
+        cat(c(
+          "<iframe src='", file_, 
+          "' scrolling='no' frameBorder='0' seamless ", paste("class='rChart", lib, "'"),
+          " id='iframe-", params$dom, "' height=", params$height + 50,
+          " width=", params$width + 50 ,"></iframe>"
+        ),sep="")
         # cat(sprintf("<iframe src=%s seamless></iframe>", file_))
         return(invisible())
       },
@@ -165,7 +166,7 @@ rCharts = setRefClass('rCharts', list(params = 'list', lib = 'character',
           "<iframe srcdoc='", htmlspecialchars(.self$render(...)),
           "' scrolling='no' frameBorder='0' seamless class='rChart ", lib, " '",
           paste0("id='iframe-", params$dom, "'>"), "</iframe>\n",
-          "<style>iframe.rChart{ width: 100%; height: 400px;}</style>"
+          paste0("<style>iframe.rChart{ width: ", params$width + 50,"px; height: ", params$height + 50,"px;}</style>")
         ))
         return(invisible())
       },
