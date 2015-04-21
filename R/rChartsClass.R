@@ -166,7 +166,7 @@ rCharts = setRefClass('rCharts', list(params = 'list', lib = 'character',
           "<iframe srcdoc='", htmlspecialchars(.self$render(...)),
           "' scrolling='no' frameBorder='0' seamless class='rChart ", lib, " '",
           paste0("id='iframe-", params$dom, "'>"), "</iframe>\n",
-          "<style>iframe.rChart{ width: 100%; height: 400px;}</style>"
+          paste0("<style>iframe.rChart{ width: ", params$width + 50,"px; height: ", params$height + 50,"px;}</style>")
         ))
         return(invisible())
       },
